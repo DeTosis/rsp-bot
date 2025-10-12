@@ -50,5 +50,9 @@ def parse_shedule(exc_path: str):
     with open(f_path, "w", encoding="utf-8") as f:
         json.dump(existing_data, f, ensure_ascii=False, indent=2)
 
+def sort_schedule():
+    print()
+
 if __name__ == '__main__':
-    parse_shedule("ЭТФ 1 курс нечетная.xls")
+    parse_shedule("ЭТФ 1 курс четная.xls")
+    sort_schedule
