@@ -1,5 +1,8 @@
 .[vv]scode
 .[Ee]nv
-/data
-/schedules
-/__pycache__
+
+**/data
+**/__pycache__
+**/bot_data
+
+/web/core/node_modules

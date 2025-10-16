@@ -6,7 +6,7 @@ from pprint import pprint
 schedules_dir = "./schedules/"
 
 def parse_shedule(exc_path: str):
-    f_path = Path("./data/schedules.json")
+    f_path = Path("../data/schedules.json")
 
     if f_path.exists() and f_path.stat().st_size > 0:
         with open(f_path, "r", encoding="utf-8") as f:
@@ -55,4 +55,3 @@ def sort_schedule():
 
 if __name__ == '__main__':
     parse_shedule("ЭТФ 1 курс четная.xls")
-    sort_schedule
