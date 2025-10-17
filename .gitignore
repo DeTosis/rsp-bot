@@ -1,8 +1,8 @@
+**/bk
 .[vv]scode
 .[Ee]nv
 
 **/data
 **/__pycache__
 **/bot_data
-
-/web/core/node_modules
+**/node_modules

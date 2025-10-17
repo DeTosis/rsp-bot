@@ -23,10 +23,11 @@ class BotCommands:
         ["Чт","Пт","Сб"]
     ]
 
-    def __init__(self, lessonData: LessonData, dateHeper: DateHelper, logPath: str):
+    def __init__(self, lessonData: LessonData, dateHeper: DateHelper, logPath: str, resentPath: str):
         self.LessonData = lessonData
         self.Datehelper = dateHeper
         self.logPath = logPath
+        self.resentPath = resentPath
         self.hashLength = 16
 
     # Initialisation command, used to introduce bot to a user
@@ -44,14 +45,15 @@ class BotCommands:
         )
 
         #Logging
-        logger.appendLog_with_user_data(update=update, context=context, hashLength=self.hashLength, logPath=self.logPath)
+        logger.appendLog_with_user_data(update=update, context=context, hashLength=self.hashLength, logPath=self.logPath, resentPath=self.resentPath)
 
 # **************************************************
 
     # Keyboard markup message processing and response building
     async def handle_message(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         text = update.message.text
-        logger.appendLog_with_user_data(update=update, context=context, hashLength=self.hashLength, logPath=self.logPath)
+        logger.appendLog_with_user_data(update=update, context=context, hashLength=self.hashLength, logPath=self.logPath, resentPath=self.resentPath)
+
 
         if text == "Сегодня":
             res = self.LessonData.get_lessons_at_date(datetime.now())

@@ -1,48 +1,37 @@
-from telegram.ext import ApplicationBuilder, CommandHandler, filters, MessageHandler, filters
-from pathlib import Path
 from dotenv import load_dotenv
 import os
 
-from bot.modules.core_modules.bot_commands import BotCommands
-from bot.modules.data_helpers.lessons_data_provider import LessonData
-from bot.modules.date_helpers.date_time_helper import DateHelper
+import asyncio
+
+from bot.modules.aiohttp_endpoint.ui_endpoint import ServerEndpoint
+from bot.modules.core_modules.telegram_bot import TelegramBot
+import bot.modules.aiohttp_endpoint.endpoint_commands as ec
 
 bot_api_key = ""
-bot_username = ""
+web_ui_port = 7901
 
 def load_secrets():
     global bot_api_key, bot_username
     load_dotenv()
     bot_api_key = os.getenv("BOT_API_KEY")
-    bot_username = os.getenv("BOT_USERNAME")
 
-def schedule_bot():
-    load_secrets()
+async def run(bot: TelegramBot, server: ServerEndpoint):
+
+    bot_task = asyncio.create_task(bot.telegram_bot(), name='bot_task') 
+    server_task = asyncio.create_task(server.bot_server(), name='server_task') 
+
+    ec.TASKS.append(bot_task)
+    ec.TASKS.append(server_task)
+
+    await asyncio.gather(*ec.TASKS)
 
 if __name__ == '__main__':
-    welcome_msg = "Бот создан для получения расписания группы ИТ-125, ЭТФ"
-    schdeule_nf_msg = "❌ Расписание на день не найдено"
-    no_lessons_msg = "❌ Расписание на день не найдено\n Или нет пар"
+    load_secrets()
 
-    schedule_dir = './bot/bot_data/schedules/parsed'
-    schedule_file = 'schedules.json'
-    schedules_path = Path(schedule_dir) / schedule_file
+    bot = TelegramBot(bot_api_key)
+    server = ServerEndpoint(web_ui_port, bot)
 
-    logs_dir = './bot/bot_data/logs'
-    logs_file = 'log.json'
-    logs_path = Path(logs_dir) / logs_file
-
-    lesson_data = LessonData(schdeule_nf_msg, no_lessons_msg, schedules_path)
-    date_helper = DateHelper()
-    commands_handler = BotCommands(lesson_data, date_helper, logs_path) 
-    schedule_bot()
-    app = ApplicationBuilder().token(bot_api_key).build()
-    
-    app.add_handler(CommandHandler(
-        'start', 
-        lambda update, context:
-        commands_handler.start(update, context, welcome_msg)
-    ))
-    app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), commands_handler.handle_message))
-
-    app.run_polling()
+    try:
+        asyncio.run(run(bot, server))
+    except KeyboardInterrupt:
+        exit
