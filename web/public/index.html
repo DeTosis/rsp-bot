@@ -4,14 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Bot Dashboard</title>
+    <title>Learning</title>
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="./styles/recent-actions.css">
+    <link rel="stylesheet" href="./styles/footer.css">
+    <link rel="stylesheet" href="./styles/schedule-display.css">
 
-    <script src="./scripts/actions.js" defer></script>
+    <script src="./scripts/status-action.js" defer></script>
+    <script src="./scripts/recent-actions.js" defer></script>
+    <script src="./scripts/schedule-display.js" defer></script>
 </head>
 
 <body>
-    <button id="bt0"> Stop Bot</button>
-    <button id="bt1"> Start Bot</button>
+    <div class="header">
+        <div class="nav">
+            <div class="nav-title-container">
+                <img class="tg-logo" src="./images/tg-logo.svg" />
+                <span class="title-text">Schedule Telegram Bot Dashboard</span>
+            </div>
+            <div class="nav-status-container">
+                <button id="status-reload-btn" class="nav-status-reload-btn">
+                    <img src="./images/refresh.svg" />
+                </button>
+                <div class="nav-status-dot">
+                    <div id="pulse-circle" class=""></div>
+                    <div id="dot-status" class=""></div>
+                </div>
+                <span id="update-time" class="nav-update-time"> 19.10.25 | 19:31</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-space-container">
+        <div class="merged-panel">
+            <div class="bot-control-panel"></div>
+            <div class="schedule-graph">
+                <div class="schedule-block">
+                    <span class="celendar-title">Available Schedules</span>
+                    <div id="celendar-holder"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recent-activity">
+            <div class="recent-block">
+                <span class="recent-title">Recent Messages</span>
+                <ol id="recent-list" class="recent-list">
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer"></div>
 </body>
 
 </html>

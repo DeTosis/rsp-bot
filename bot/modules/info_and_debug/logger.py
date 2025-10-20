@@ -16,7 +16,7 @@ def appendLog_with_user_data(update: Update, context: ContextTypes.DEFAULT_TYPE,
     user = update.message.from_user
     user_id = str(user.id)
     user_name = user.full_name
-    msg_date = update.message.date.isoformat()
+    msg_date = update.message.date.astimezone()
     text = update.message.text
 
     if logPath.exists() and logPath.stat().st_size > 0:
@@ -28,7 +28,7 @@ def appendLog_with_user_data(update: Update, context: ContextTypes.DEFAULT_TYPE,
     
     if resentPath.exists() and resentPath.stat().st_size > 0:
         with resentPath.open("r", encoding="utf-8") as r:
-            resent_data = r.read()
+            resent_data = r.readlines()[-20:]
     else:
         resent_data = ''
 
@@ -37,7 +37,7 @@ def appendLog_with_user_data(update: Update, context: ContextTypes.DEFAULT_TYPE,
 
     log_data[user_id].append({
         "name": user_name,
-        "date": msg_date,
+        "date": f'{msg_date}',
         "msg": text
     })
 
@@ -45,7 +45,7 @@ def appendLog_with_user_data(update: Update, context: ContextTypes.DEFAULT_TYPE,
     resent_data += f'{user_id} {user_name_str} {msg_date} {text}\n'
     
     with resentPath.open("w", encoding="utf-8") as r:
-        r.write(resent_data)
+        r.write(''.join(resent_data))
 
     with logPath.open("w", encoding="utf-8") as f:
         json.dump(log_data, f, indent=4, ensure_ascii=False)

@@ -1,5 +1,9 @@
 import asyncio
 
+import os
+from pathlib import Path
+import json
+
 from bot.modules.core_modules.telegram_bot import TelegramBot
 
 TASKS = []
@@ -32,3 +36,41 @@ async def start(bot: TelegramBot):
     print('[ INFO ] Starting up the bot')
     bot_task = asyncio.create_task(bot.start(), name='bot_task')
     TASKS.append(bot_task)
+
+async def validate() -> bool:
+    return any(t.get_name() == 'bot_task' for t in asyncio.all_tasks())
+
+async def retriveRecent(bot: TelegramBot) -> list:
+    json_list = []
+    with open(bot.resent_path, 'r', encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            parts = line.split(maxsplit=4)
+            if len(parts) != 5:
+                continue 
+
+            timestamp = parts[3].split('+')[0]
+
+            record = {
+                "id": int(parts[0]),
+                "name": parts[1],
+                "timestamp": parts[2] + ' ' + timestamp,
+                "msg": parts[4]
+            }
+            json_list.append(record)
+
+    json_list = list(reversed(json_list))
+    return json_list
+
+async def retriveSchedules():
+    sch_path_str = os.getenv('PARSED_SCHEDULES')
+    if not sch_path_str:
+        print('[ ERR ] Schedule file could not be found')
+        return {'error:' 'file not found'}
+    
+    sch_path = Path(sch_path_str)
+    with sch_path.open("r", encoding="utf-8") as f:
+        log_data = json.load(f)
+        return log_data

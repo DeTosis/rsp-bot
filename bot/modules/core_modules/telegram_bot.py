@@ -24,7 +24,7 @@ class TelegramBot():
         await self.app.initialize()
         await self.app.start()
 
-        print('Bot started')
+        print('[ INFO ] Bot started')
         await self.app.updater.start_polling()
 
         try:
@@ -52,9 +52,9 @@ class TelegramBot():
         logs_file = 'log.json'
         logs_path = Path(logs_dir) / logs_file
         resent_file = 'resent.txt'
-        resent_path = Path(logs_dir) / resent_file
+        self.resent_path = Path(logs_dir) / resent_file
 
         lesson_data = LessonData(schdeule_nf_msg, no_lessons_msg, schedules_path)
         date_helper = DateHelper()
-        self.commands_handler = BotCommands(lesson_data, date_helper, logs_path, resent_path) 
+        self.commands_handler = BotCommands(lesson_data, date_helper, logs_path, self.resent_path) 
         await self.start()

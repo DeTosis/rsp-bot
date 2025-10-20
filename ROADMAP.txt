@@ -1,0 +1,19 @@
+[] fix bot architecture, correct all passes to be stored in .env,
+    rather then scattered around in code
+
+[] make a restart, shutdown, start functionality in web-ui
+[] correct bot validity cheking
+
+[] refactor bot-core.py it is a large mess
+[] refactor and comment all what is relevvant to aiohttp 
+    web endpoint, commands are scattered yet not organaised properly
+
+[] introduce not hand driven schedule download and parsing
+    parse requests should came from a web-ui only
+
+[] correct shedule storage, clear json that is at least 30 days old
+
+*** WEB-UI ***
+[] Ui is not responsive
+[] schedule celendar could not render last days from previous - next 
+    month

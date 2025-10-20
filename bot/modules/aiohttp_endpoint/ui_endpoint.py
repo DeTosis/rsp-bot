@@ -20,6 +20,18 @@ class ServerEndpoint:
         if req == 'startBot':
             await ec.start(self.bot)
 
+        if req == 'isAlive':
+            isValid = await ec.validate()
+            return web.Response(text=f'{isValid}', status=200)
+
+        if req == 'get-recent':
+            data = await ec.retriveRecent(self.bot)
+            return web.json_response(data, status=200)
+        
+        if req == 'get-schedules-parsed':
+            data = await ec.retriveSchedules()
+            return web.json_response(data, status=200)
+
         return web.Response()
 
     async def bot_server(self):
@@ -41,7 +53,7 @@ class ServerEndpoint:
         await runner.setup()
         site = web.TCPSite(runner, '0.0.0.0', self.port)
         await site.start()
-        print("Server started at http://0.0.0.0:7901")
+        print(f'[ INFO ] Server started at port {self.port}')
         try:
             await asyncio.Event().wait()
         except asyncio.CancelledError:
