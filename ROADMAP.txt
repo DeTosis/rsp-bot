@@ -1,19 +1,48 @@
-[] fix bot architecture, correct all passes to be stored in .env,
-    rather then scattered around in code
+= BOT INTERNALS ====================================================================================
 
-[] make a restart, shutdown, start functionality in web-ui
-[] correct bot validity cheking
+correct exception handling
+fix bot loading (move data to .env file or find another solution)
+logs formatting and handling unification
+unify message sending in a single function or wrapper
+network-lag proof bot
+add response to unmanaged message
 
-[] refactor bot-core.py it is a large mess
-[] refactor and comment all what is relevvant to aiohttp 
-    web endpoint, commands are scattered yet not organaised properly
+= WEB INTERNALS ====================================================================================
 
-[] introduce not hand driven schedule download and parsing
-    parse requests should came from a web-ui only
+correct exception handling
+network-lag proof ui server
+redo requests to ui server, more standartized and error handling
+automaticly post update events on new log or a bot status
+add a correct logs processing and error handling before sending to a ui
+re do js work it is a messy crap rn
 
-[] correct shedule storage, clear json that is at least 30 days old
+= WEB UI ===========================================================================================
 
-*** WEB-UI ***
-[] Ui is not responsive
-[] schedule celendar could not render last days from previous - next 
-    month
+correct exception handling
+fix celendar dating
+
+[NEW FEATURES]
+= WEB UI ===========================================================================================
+
+add a celendar 'next month' button
+add a bot restart button
+add a bot start button
+add a ui server restart button
+
+= NEW STRUCTURE CORE PROCESS =======================================================================
+
+add a new structure for managing sub processes
+    +---- rework bot scheduling to a core process
+    +---- rework ui scheduling to a core process
+
+= NEW SERVICE BB PARSER =============================================================================
+
+parse API or bb.usurt to get a schedules automaticaly
+
+=====================================================================================================
+                                                DONE
+=====================================================================================================
+[+] add schedule 2-week cleanup |actually made it 1 week|
+[+] add a bot shutdown button
+[+] fix css move some parts to variables
+[+] gather bot status correctly (it does not work rn)

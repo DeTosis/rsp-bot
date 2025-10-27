@@ -1,21 +1,20 @@
-li {
-    color: white;
-}
+@import url('./variables.css');
 
 .content-space-container {
     position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    align-items: center;
     flex: 1;
     background-color: black;
 }
 
 .recent-activity {
     display: flex;
+    width: 50%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%;
 }
 
 
@@ -23,40 +22,27 @@ li {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
-    border-style: solid;
-    border-width: 1px;
-    border-color: white;
-    margin: 8px;
+
+    border: var(--border-main);
     border-radius: 10px;
+    margin: var(--main-margin);
 }
 
 .recent-title {
     display: flex;
     text-align: center;
     justify-content: center;
-    text-align: center;
-    margin-bottom: 4px;
-    margin-top: 8px;
-    font-weight: 400;
-    font-size: clamp(1rem, 1vw + 1rem, 1.6rem);
-    color: rgb(255, 255, 255);
-    border-bottom: 1px solid;
+    margin: var(--main-margin);
+    border-bottom: var(--underline);
 }
 
 .recent-list {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-color: white;
-    text-decoration: none;
-    list-style: none;
     width: 100%;
-
     max-height: 600px;
     overflow-y: auto;
-    margin-bottom: 4px;
-    margin-top: 4px;
 }
 
 .recent-list {
@@ -79,22 +65,18 @@ li {
     display: flex;
     align-content: center;
     justify-content: space-evenly;
-    width: 80%;
 
     min-height: 64px;
     overflow: hidden;
 
-    border-style: solid;
-    border-color: rgb(204, 212, 212);
+    border: var(--border-main);
     border-radius: 10px;
 
     border-width: 1px;
-    margin-bottom: 8px;
+    margin-bottom: var(--main-margin);
 }
 
 .recent-name {
-    font-weight: 300;
-    color: rgb(204, 212, 212);
     text-align: center;
     text-wrap: wrap;
     white-space: wrap;
@@ -104,52 +86,48 @@ li {
 
 .recent-id {
     text-align: center;
-    font-weight: 200;
-    font-size: clamp(0.4rem, 0.5vw + 1rem, 1rem);
-    color: rgb(171, 184, 184);
     text-overflow: clip;
+    font-weight: var(--font-weight4);
 }
 
 .recent-timestamp {
     display: flex;
     align-items: center;
-
-    font-weight: 200;
-    font-size: clamp(0.4rem, 0.5vw + 1rem, 1rem);
-    color: rgb(171, 184, 184);
+    font-weight: var(--font-weight4);
 }
 
 .recent-message {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    margin-right: 8px;
+    margin-right: var(--main-margin);
     width: 62px;
     text-align: right;
     font-weight: 200;
-    font-size: clamp(0.4rem, 0.5vw + 1rem, 1rem);
-    color: rgb(171, 184, 184);
+}
+
+@media (width < 1700px) {
+    .recent-block {
+        width: 80%;
+    }
 }
 
 @media (width<=750px) {
     .content-space-container {
-        flex-direction: column-reverse;
-    }
-
-    .recent-activity {
+        flex-direction: column;
         width: 100%;
     }
 
+    .recent-activity {
+        width: 98%;
+    }
+
     .recent-block {
-        width: 96%;
+        width: 100%;
     }
 
     .recent-list {
         max-height: 300px;
-    }
-
-    .recent-id {
-        font-size: clamp(0.3rem, 0.5vw + 1rem, 0.8rem);
     }
 }
 
@@ -170,9 +148,5 @@ li {
 
     .recent-list {
         max-height: 600px;
-    }
-
-    .recent-id {
-        font-size: clamp(0.4rem, 0.5vw + 1rem, 1rem);
     }
 }

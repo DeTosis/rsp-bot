@@ -15,7 +15,8 @@ class ServerEndpoint:
         req = await request.text()
 
         if req == 'stopBot':
-            await ec.shutdown()
+            data = await ec.shutdown()
+            return web.json_response(data, status=200)
 
         if req == 'startBot':
             await ec.start(self.bot)

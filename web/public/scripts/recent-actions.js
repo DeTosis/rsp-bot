@@ -28,11 +28,11 @@ async function requestRecent() {
 
                 div0.classList = 'recent-user-data';
                 div1.classList = 'recent-timestamp';
-                div2.classList = 'recent-message';
+                div2.classList = 'super-small-font recent-message';
 
-                span0.classList = 'recent-name .auto-text';
-                span1.classList = 'recent-id';
-                span2.classList = 'recent-timestamp';
+                span0.classList = 'super-small-font recent-name';
+                span1.classList = 'super-small-font recent-id';
+                span2.classList = 'super-small-font recent-timestamp';
                 span3.classList = 'recent-msg';
 
                 span0.textContent = data[i].name;

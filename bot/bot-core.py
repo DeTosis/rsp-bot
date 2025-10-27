@@ -7,6 +7,8 @@ from bot.modules.aiohttp_endpoint.ui_endpoint import ServerEndpoint
 from bot.modules.core_modules.telegram_bot import TelegramBot
 import bot.modules.aiohttp_endpoint.endpoint_commands as ec
 
+import bot.modules.data_helpers.schedule_file_cleaner as sfc
+
 bot_api_key = ""
 web_ui_port = 7901
 
@@ -27,6 +29,7 @@ async def run(bot: TelegramBot, server: ServerEndpoint):
 
 if __name__ == '__main__':
     load_secrets()
+    sfc.cleanup()
 
     bot = TelegramBot(bot_api_key)
     server = ServerEndpoint(web_ui_port, bot)

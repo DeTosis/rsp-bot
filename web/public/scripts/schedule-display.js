@@ -29,7 +29,7 @@ async function createScheduleGraph() {
     for (var i = 0; i < 5 * 7; i++) {
         let div = document.createElement('div');
         let span0 = document.createElement('span');
-        span0.classList = 'day-title';
+        span0.classList = 'tiny-small-font day-title';
 
         if (i < first_week_day) {
             div.classList = `day-block day-filler`;
@@ -39,7 +39,12 @@ async function createScheduleGraph() {
         }
         else {
             const target = new Date(date.getFullYear(), date.getMonth(), i - 1);
-            const exists = sch_dates.some(d => d.toISOString() === target.toISOString());
+            let exists;
+            try {
+                exists = sch_dates.some(d => d.toISOString() === target.toISOString());
+            } catch (ex) {
+                console.log(ex)
+            }
 
             if (exists) {
                 div.classList = `day-block day-${i} scheduled`

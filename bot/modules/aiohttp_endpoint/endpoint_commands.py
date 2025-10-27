@@ -1,4 +1,5 @@
 import asyncio
+from telegram import Bot
 
 import os
 from pathlib import Path
@@ -8,7 +9,7 @@ from bot.modules.core_modules.telegram_bot import TelegramBot
 
 TASKS = []
 
-async def shutdown():
+async def shutdown() -> str:
     bot_task = None
     for t in asyncio.all_tasks():
         if t.get_name() == 'bot_task':
@@ -26,6 +27,8 @@ async def shutdown():
 
         bot_task.cancel()
         await bot_task
+    
+    return "done"
 
 async def start(bot: TelegramBot):
     for t in asyncio.all_tasks():
@@ -38,7 +41,15 @@ async def start(bot: TelegramBot):
     TASKS.append(bot_task)
 
 async def validate() -> bool:
-    return any(t.get_name() == 'bot_task' for t in asyncio.all_tasks())
+    token = os.getenv('BOT_API_KEY')
+    bot = Bot(token=token)
+    try:
+        validity = await bot.get_me()
+        return True
+    except Exception as e:
+        print(f'[ ERR ] Exception [{e}] rised while trying to validate bot state')
+        return False
+    #return any(t.get_name() == 'bot_task' for t in asyncio.all_tasks())
 
 async def retriveRecent(bot: TelegramBot) -> list:
     json_list = []

@@ -1,0 +1,89 @@
+@import url('./variables.css');
+
+.merged-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.pannel-contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bot-control-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border: var(--border-main);
+    margin: var(--main-margin);
+    border-radius: 10px;
+}
+
+.bot-control-title {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 4px;
+    margin-top: 8px;
+}
+
+.shutdown-pannel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: var(--border-main);
+    border-radius: 12px;
+    margin: 8px;
+}
+
+.shutdown-title {
+    text-wrap: wrap;
+    text-align: center;
+    margin-left: var(--main-margin);
+    margin-top: var(--main-margin);
+    margin-bottom: var(--main-margin);
+    border-radius: 10px;
+    width: 50%;
+    transition: all 0.3s ease 0s;
+}
+
+.ctrl-btn {
+    display: flex;
+    height: 60px;
+    width: 60px;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 2px;
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+    padding: 4px;
+    transition: all 0.3s ease 0s;
+}
+
+button img {
+    display: flex;
+    filter: invert(1);
+    height: 80%;
+    width: 80%;
+    transition: all 0.3s ease 0s;
+}
+
+.shutdown-btn:hover+.shutdown-title {
+    color: rgb(190, 80, 80);
+}
+
+.ctrl-btn:hover {
+    border-color: rgb(190, 80, 80);
+}
+
+.ctrl-btn:hover .sdimg {
+    border-color: rgb(190, 80, 80);
+    transform: rotate(45deg);
+}

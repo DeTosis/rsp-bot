@@ -1,26 +1,11 @@
-.schedule-graph {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.merged-panel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-}
+@import url('./variables.css');
 
 .schedule-block {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%;
-    border: 1px solid white;
+    border: var(--border-main);
     border-radius: 10px;
 }
 
@@ -28,14 +13,16 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 10px;
-    margin-bottom: 16px;
+    margin: var(--main-margin);
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .day-block {
     border: 1px solid rgb(179, 179, 179);
     height: 40px;
     width: 40px;
-    border-radius: 8px;
+    border-radius: var(--main-margin);
 }
 
 .day-filler {
@@ -44,19 +31,13 @@
 
 .celendar-title {
     text-align: center;
-    margin: 8px;
-    font-weight: 400;
-    font-size: clamp(1rem, 1vw + 1rem, 1.6rem);
-    color: rgb(255, 255, 255);
+    margin: var(--main-margin);
     border-bottom: 1px solid;
 }
 
 .day-title {
     text-align: start;
-    margin: 8px;
-    font-weight: 400;
-    font-size: 0.8rem;
-    color: rgb(119, 118, 118);
+    margin: var(--main-margin);
 }
 
 .scheduled {
@@ -68,5 +49,5 @@
 }
 
 .scheduled .day-title {
-    color: white;
+    font-weight: 400;
 }

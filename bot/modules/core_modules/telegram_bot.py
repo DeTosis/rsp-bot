@@ -1,4 +1,5 @@
 from telegram.ext import ApplicationBuilder, CommandHandler, filters, MessageHandler, filters
+from telegram.error import NetworkError, TimedOut
 from pathlib import Path
 import asyncio
 
@@ -25,10 +26,15 @@ class TelegramBot():
         await self.app.start()
 
         print('[ INFO ] Bot started')
-        await self.app.updater.start_polling()
-
         try:
+            await self.app.updater.start_polling()
             await asyncio.Event().wait()
+
+        except (NetworkError, TimedOut, TimeoutError):
+            await self.shutdown()
+            print('[ INFO ] Network error rised')
+            return
+
         except asyncio.CancelledError:
             await self.shutdown()
             print('[ INFO ] Bot task cancelled')

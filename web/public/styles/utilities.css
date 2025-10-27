@@ -1,0 +1,31 @@
+@import url('./variables.css');
+
+.large-font {
+    color: var(--accent-color1);
+    font-size: var(--font-25);
+    font-weight: var(--font-500);
+}
+
+.medium-font {
+    color: var(--accent-color2);
+    font-size: var(--font-16);
+    font-weight: var(--font-400);
+}
+
+.small-font {
+    color: var(--accent-color3);
+    font-size: var(--font-12);
+    font-weight: var(--font-300);
+}
+
+.super-small-font {
+    color: var(--accent-color3);
+    font-size: var(--font-10);
+    font-weight: var(--font-300);
+}
+
+.tiny-small-font {
+    color: var(--accent-color3);
+    font-size: var(--font-08);
+    font-weight: var(--font-200);
+}
