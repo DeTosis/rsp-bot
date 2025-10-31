@@ -24,7 +24,9 @@ class DateHelper:
     
     def convert_date_to_usurt_format(self, date: datetime) -> str:
 
-        formatted_date = f"{date.day} {self.months[date.month - 1]} {self.weekdays[date.weekday()]}"
+        day = f'{date.day}' if int(date.day) >= 10 else f'0{date.day}'
+
+        formatted_date = f"{day} {self.months[date.month - 1]} {self.weekdays[date.weekday()]}"
         return formatted_date
     
     def convert_usurt_format_to_date(self, date:str, year:str) -> datetime:
