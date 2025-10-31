@@ -4,7 +4,7 @@ from pathlib import Path
 import json
 from datetime import datetime, timedelta
 
-from bot.modules.date_helpers.date_time_helper import DateHelper
+import bot.modules.scheduleManager as schm
 
 schedules_dir = "./bot/bot_data/schedules/parsed/"
 schedules_file = 'schedules.json' #
@@ -21,15 +21,13 @@ def cleanup():
         print(f'[ >>> ] File {f_path} could not be found, open, or treated as a json')
         return
     
-    dh = DateHelper()
-
     today = datetime.now()
     cleanup_date = today - timedelta(7)
 
     to_remove = []
     for item in json_schedules:
         day = item['day']
-        currcurrent_date = dh.convert_usurt_format_to_date(day, 2025)
+        currcurrent_date = schm.convert_usurt_format_to_date(day, 2025)
 
         if (currcurrent_date < cleanup_date - timedelta(1)):
             to_remove.append(item)

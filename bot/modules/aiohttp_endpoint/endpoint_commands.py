@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 import json
 
-from bot.modules.core_modules.telegram_bot import TelegramBot
+from bot.modules.botCore import TelegramBot
 
 TASKS = []
 

@@ -2,7 +2,7 @@ import aiohttp_cors
 from aiohttp import web
 import asyncio
 
-from bot.modules.core_modules.telegram_bot import TelegramBot
+from bot.modules.botCore import TelegramBot
 import bot.modules.aiohttp_endpoint.endpoint_commands as ec
 
 class ServerEndpoint:

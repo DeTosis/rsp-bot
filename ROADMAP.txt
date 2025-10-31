@@ -1,3 +1,7 @@
+= OTHER ============================================================================================
+
+add automatic directory creation for a bot data
+
 = BOT INTERNALS ====================================================================================
 
 correct exception handling
@@ -46,3 +50,9 @@ parse API or bb.usurt to get a schedules automaticaly
 [+] add a bot shutdown button
 [+] fix css move some parts to variables
 [+] gather bot status correctly (it does not work rn)
+
+[+] cleaned up some modules, schedule_manager in particular
+
+=====================================================================================================
+                                              IDEAS
+=====================================================================================================
