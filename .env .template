@@ -14,3 +14,13 @@ INTERNAL_LOG=InfoLog.log
 
 # Log for saving user requests
 USER_REQUESTS_LOG=RequestsLog.log
+
+# =======================================
+#   *** BB SCHEDULES URLS AND DATA ***
+# =======================================
+
+LOGIN=bb_login
+PASSWORD=bb_pass
+
+ODD_WEEK_URL=https://bb.usurt.ru/bbcswebdav/institution/*
+EVEN_WEEK_URL=https://bb.usurt.ru/bbcswebdav/institution/*

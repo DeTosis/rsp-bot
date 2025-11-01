@@ -1,2 +1,2 @@
 > [!NOTE]  
-> Bot is currently under active development more information would be available later
+> Bot and BB auth mechanisms are done, README likely would never be complete for the lack of porpuse. Project is made for a specific university in Russia to get schedules and provide them to the students via telegram bot.

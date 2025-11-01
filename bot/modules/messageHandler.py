@@ -22,6 +22,8 @@ markup_keyboard = [
     ["Чт","Пт","Сб"]
 ]
 
+devider_indentation = 26
+
 #command:description
 sub_commands_title = "<code>✓ Дополнительные опции: (Нажать для вызова)</code>"
 sub_commands = {
@@ -85,7 +87,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         for i, c in enumerate(sub_commands):
             msg += f' • {c} <code>{sub_commands[c]}</code>\n'
             if i != len(sub_commands) - 1:
-                msg += '\u2500' * 28 + '\n'
+                msg += '\u2500' * devider_indentation + '\n'
     else:
         msg = cst.NOT_SUPPORTED
         Logger.appendInternalLog(Logger.LogPrefix.INFO, f'Use of unsopported command `{text}`')
@@ -110,12 +112,12 @@ async def all(update: Update, context: ContextTypes.DEFAULT_TYPE):
         i = 1
         while (datetime.now() + timedelta(days=i)).weekday() != 6:
             msg += schm.get_lessons_at_date(datetime.now() + timedelta(days=i))
-            msg += '\u2500' * 28 + '\n'
+            msg += '\u2500' * devider_indentation + '\n'
             i += 1
     else:
         i = datetime.now().weekday() * -1
         while (datetime.now() + timedelta(days=i)).weekday() != 6:
             msg += schm.get_lessons_at_date(datetime.now() + timedelta(days=i))
-            msg += '\u2500' * 28 + '\n'
+            msg += '\u2500' * devider_indentation + '\n'
             i += 1
     await trySendMessage(update, msg)

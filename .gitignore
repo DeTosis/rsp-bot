@@ -7,3 +7,4 @@
 **/bot_data
 **/node_modules
 **/logs
+**/*.bat

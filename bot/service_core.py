@@ -5,7 +5,7 @@ from bot.modules.botCore import TelegramBot
 import bot.modules.serviceLogger as Logger
 
 if __name__ == '__main__':
-    load_dotenv()
+    load_dotenv('.env')
 
     bot = TelegramBot()
     try:
