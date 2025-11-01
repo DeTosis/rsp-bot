@@ -32,11 +32,14 @@ def appendInternalLog(prefix: LogPrefix, msg: str, postInTerminal: bool=False):
     return
 
 def appendRecentRequestsLog(responded: RespondStatus, update: Update):
-    user = update.message.from_user
-    user_id = str(user.id)
-    user_name = user.full_name
-    msgTime = str(update.message.date.astimezone()).split('+')[0]
-    text = update.message.text
+    try:
+        user = update.message.from_user
+        user_id = str(user.id)
+        user_name = user.full_name
+        msgTime = str(update.message.date.astimezone()).split('+')[0]
+        text = update.message.text
+    except Exception as e:
+        appendInternalLog(LogPrefix.ERR, f'An error occured while trying to append request log: {e}')
 
     f_path = Path(os.getenv('LOGS_DIR'))
     f_path.mkdir(parents=True, exist_ok=True)

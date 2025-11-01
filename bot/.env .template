@@ -1,0 +1,16 @@
+#Telegram bot api_key
+BOT_API_KEY=your_telegram_bot_api_key
+
+# Json file with parsed schedules for bot replies
+SCHEDULES_JSON=./path_to_parsed_schedules.json
+
+# ================================
+#   *** LOGS AND STATISTICS ***
+# ================================
+
+#Path for an exceptions and core services logging
+LOGS_DIR=./bot/logs # standart logs directory
+INTERNAL_LOG=InfoLog.log
+
+# Log for saving user requests
+USER_REQUESTS_LOG=RequestsLog.log

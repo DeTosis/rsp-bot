@@ -95,7 +95,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def rest(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = ""
     if datetime.now().weekday() == 6:
-        msg = cst.SCHEDULE_NO_LESSONS
+        msg = f'<u>Воскресенье</u>\n{cst.SCHEDULE_NO_LESSONS}'
     else:
         i = 0
         while (datetime.now() + timedelta(days=i)).weekday() != 6:
