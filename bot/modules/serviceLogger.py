@@ -1,5 +1,4 @@
 from telegram import Update 
-from telegram.ext import ContextTypes
 
 from datetime import datetime
 import os
@@ -44,5 +43,5 @@ def appendRecentRequestsLog(responded: RespondStatus, update: Update):
     f_path = Path(f_path) / os.getenv('USER_REQUESTS_LOG')
 
     with open(f_path, 'a', encoding="utf-8") as f:
-        f.write(f'Resp:{datetime.now().replace(microsecond=0)} Req:{msgTime} {responded.value} {user_id} {user_name.replace(' ', '-')} {text} \n')
+        f.write(f'REQ:{msgTime} RESP:{datetime.now().replace(microsecond=0)} {responded.value} {user_id} {user_name.replace(' ', '-')} {text} \n')
     return
