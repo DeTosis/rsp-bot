@@ -20,6 +20,15 @@ class TelegramBot():
         self.app.add_handler(MessageHandler(
             filters.TEXT & (~filters.COMMAND), mh.handle_message
         ))
+        self.app.add_handler(CommandHandler(
+            'rest',
+            lambda update, context: mh.rest(update, context)
+        ))
+
+        self.app.add_handler(CommandHandler(
+            'all',
+            lambda update, context: mh.all(update, context)
+        ))
         return
 
     def error_callback(update: object, context: ContextTypes.DEFAULT_TYPE):

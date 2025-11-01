@@ -68,7 +68,7 @@ def get_lessons_at_date(date: datetime) -> str:
             result += f'<u>{formatted_date}</u>\n\n'
 
             if (not item["lessons"]):
-                return cst.SCHEDULE_NO_LESSONS
+                return f'<u>{formatted_date}</u>\n{cst.SCHEDULE_NO_LESSONS}'
             
             for lesson in item["lessons"]:
                 for i, (_, details) in enumerate(lesson.items()):
@@ -80,6 +80,6 @@ def get_lessons_at_date(date: datetime) -> str:
                 result += '\n'
             break
     else:
-        return cst.SCHEDULE_NOT_FOUND
+        return f'<u>{formatted_date}</u>\n{cst.SCHEDULE_NOT_FOUND}'
 
     return result

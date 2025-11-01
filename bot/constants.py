@@ -9,10 +9,10 @@ WELCOME = "Бот создан для получения расписания г
 
 # *** SCHEDULE_NOT_FOUND ***
 # Message in case of a requested date is not found or not yet parsed
-SCHEDULE_NOT_FOUND = "❌ Расписание на день не найдено"
+SCHEDULE_NOT_FOUND = "❌ Расписание на день не найдено\n"
 
 # *** SCHEDULE_NO_LESSONS ***
 # Message for a week day where there is no classes
-SCHEDULE_NO_LESSONS = "❌ Нет пар"
+SCHEDULE_NO_LESSONS = "❌ Нет пар\n"
 
-NOT_SUPPORTED = "❌ Комманда не распознана или не существует"
+NOT_SUPPORTED = "❌ Комманда не распознана или не существует\n"
